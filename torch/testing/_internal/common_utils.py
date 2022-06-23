@@ -1826,7 +1826,18 @@ class TestCase(expecttest.TestCase):
             failures_before = 0 if result is None else len(result.failures)  # num tests marked as failed before starting
             errors_before = 0 if result is None else len(result.errors)  # num tests marked as errored before starting
 
-        super().run(result=result)
+        use_dynamo = os.getenv('PYTORCH_TEST_WITH_DYNAMO') == '1'
+
+        if use_dynamo:
+            import torchdynamo
+            # torchdynamo.config.trace = True
+            # torchdynamo.config.debug = True
+            torchdynamo.reset()
+            with torchdynamo.optimize("eager"):
+                super().run(result=result)
+        else:
+            super().run(result=result)
+
         # Early terminate test if necessary.
         if self._should_stop_test_suite():
             if result.wasSuccessful():
