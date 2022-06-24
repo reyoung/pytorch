@@ -279,7 +279,7 @@ id<MTLBuffer> _gattherScatterViewTensor(
 {
   TORCH_CHECK(mpsCachedGraph != nil);
   MPSStream* stream = getCurrentMPSStream();
-  bool scatterViewOp = (viewOpType == GatherScatterViewOpType::Scatter); 
+  bool scatterViewOp = (viewOpType == GatherScatterViewOpType::Scatter);
   struct CachedGraph : public MPSCachedGraph
   {
     CachedGraph(MPSGraph *graph) : MPSCachedGraph(graph) {}
