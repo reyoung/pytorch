@@ -64,6 +64,26 @@ void _spdiags_kernel_cpu(
       });
 }
 
+void _spdiags_backward_kernel_cpu(TensorIterator& iter, Tensor& grad_in) {
+  AT_DISPATCH_ALL_TYPES_AND_COMPLEX_AND4(
+      at::ScalarType::BFloat16,
+      at::ScalarType::Half,
+      at::ScalarType::Bool,
+      at::ScalarType::ComplexHalf,
+      iter.dtype(),
+      "spdiags_backward_cpu",
+      [&] {
+        auto grad_in_accessor = grad_in.accessor<scalar_t, 2>();
+        cpu_kernel(
+            iter,
+            [&](scalar_t grad_out_value,
+                int64_t row_idx,
+                int64_t col_idx) -> scalar_t {
+              grad_in_accessor[row_idx][col_idx] = grad_out_value;
+              return scalar_t{0};
+            });
+      });
+}
 } // namespace
 
 Tensor spdiags_cpu(
@@ -74,5 +94,14 @@ Tensor spdiags_cpu(
   return impl::spdiags_impl(
       diagonals, offsets, shape, layout, _spdiags_kernel_cpu);
 }
+
+Tensor spdiags_backward_cpu(
+    const Tensor& grad_out,
+    const Tensor& offsets,
+    IntArrayRef input_shape) {
+  return impl::spdiags_backward_impl(
+      grad_out, offsets, input_shape, _spdiags_backward_kernel_cpu);
+}
+
 } // namespace native
 } // namespace at
