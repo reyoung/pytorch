@@ -5280,6 +5280,7 @@
   python_module: sparse
   dispatch:
     CPU: spdiags_cpu
+    CUDA: spdiags_cuda
 
 - func: _spdiags_backward(Tensor grad_output, Tensor offsets, int[] input_shape) -> Tensor
   dispatch:
