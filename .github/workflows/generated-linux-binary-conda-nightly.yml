@@ -83,7 +83,7 @@ jobs:
   conda-py3_7-cpu-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_7-cpu-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -268,7 +268,7 @@ jobs:
   conda-py3_7-cuda10_2-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_7-cuda10_2-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -466,7 +466,7 @@ jobs:
   conda-py3_7-cuda11_3-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_7-cuda11_3-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -664,7 +664,7 @@ jobs:
   conda-py3_7-cuda11_6-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_7-cuda11_6-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -860,7 +860,7 @@ jobs:
   conda-py3_8-cpu-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_8-cpu-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -1045,7 +1045,7 @@ jobs:
   conda-py3_8-cuda10_2-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_8-cuda10_2-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -1243,7 +1243,7 @@ jobs:
   conda-py3_8-cuda11_3-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_8-cuda11_3-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -1441,7 +1441,7 @@ jobs:
   conda-py3_8-cuda11_6-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_8-cuda11_6-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -1637,7 +1637,7 @@ jobs:
   conda-py3_9-cpu-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_9-cpu-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -1822,7 +1822,7 @@ jobs:
   conda-py3_9-cuda10_2-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_9-cuda10_2-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -2020,7 +2020,7 @@ jobs:
   conda-py3_9-cuda11_3-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_9-cuda11_3-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -2218,7 +2218,7 @@ jobs:
   conda-py3_9-cuda11_6-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_9-cuda11_6-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -2414,7 +2414,7 @@ jobs:
   conda-py3_10-cpu-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_10-cpu-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -2599,7 +2599,7 @@ jobs:
   conda-py3_10-cuda10_2-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_10-cuda10_2-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -2797,7 +2797,7 @@ jobs:
   conda-py3_10-cuda11_3-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_10-cuda11_3-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda
@@ -2995,7 +2995,7 @@ jobs:
   conda-py3_10-cuda11_6-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: conda-py3_10-cuda11_6-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: conda

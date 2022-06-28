@@ -84,7 +84,7 @@ jobs:
   libtorch-cpu-shared-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cpu-shared-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -270,7 +270,7 @@ jobs:
   libtorch-cpu-shared-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cpu-shared-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -456,7 +456,7 @@ jobs:
   libtorch-cpu-static-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cpu-static-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -642,7 +642,7 @@ jobs:
   libtorch-cpu-static-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cpu-static-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -830,7 +830,7 @@ jobs:
   libtorch-cuda10_2-shared-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda10_2-shared-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -1031,7 +1031,7 @@ jobs:
   libtorch-cuda10_2-shared-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda10_2-shared-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -1232,7 +1232,7 @@ jobs:
   libtorch-cuda10_2-static-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda10_2-static-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -1433,7 +1433,7 @@ jobs:
   libtorch-cuda10_2-static-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda10_2-static-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -1634,7 +1634,7 @@ jobs:
   libtorch-cuda11_3-shared-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_3-shared-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -1835,7 +1835,7 @@ jobs:
   libtorch-cuda11_3-shared-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_3-shared-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -2036,7 +2036,7 @@ jobs:
   libtorch-cuda11_3-static-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_3-static-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -2237,7 +2237,7 @@ jobs:
   libtorch-cuda11_3-static-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_3-static-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -2438,7 +2438,7 @@ jobs:
   libtorch-cuda11_6-shared-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_6-shared-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -2639,7 +2639,7 @@ jobs:
   libtorch-cuda11_6-shared-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_6-shared-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -2840,7 +2840,7 @@ jobs:
   libtorch-cuda11_6-static-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_6-static-with-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -3041,7 +3041,7 @@ jobs:
   libtorch-cuda11_6-static-without-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-cuda11_6-static-without-deps-cxx11-abi-build
-    runs-on: linux.4xlarge.nvidia.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -3242,7 +3242,7 @@ jobs:
   libtorch-rocm5_0-shared-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-rocm5_0-shared-with-deps-cxx11-abi-build
-    runs-on: linux.rocm.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -3472,7 +3472,7 @@ jobs:
   libtorch-rocm5_0-static-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-rocm5_0-static-with-deps-cxx11-abi-build
-    runs-on: linux.rocm.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -3702,7 +3702,7 @@ jobs:
   libtorch-rocm5_1_1-shared-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-rocm5_1_1-shared-with-deps-cxx11-abi-build
-    runs-on: linux.rocm.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
@@ -3932,7 +3932,7 @@ jobs:
   libtorch-rocm5_1_1-static-with-deps-cxx11-abi-test:  # Testing
     if: ${{ github.repository_owner == 'pytorch' }}
     needs: libtorch-rocm5_1_1-static-with-deps-cxx11-abi-build
-    runs-on: linux.rocm.gpu
+    runs-on: ${{ (config["gpu_arch_type"] == "rocm" && linux.rocm.gpu) || (config["gpu_arch_type"] == "cuda" && linux.4xlarge.nvidia.gpu) || linux.4xlarge }}
     timeout-minutes: 240
     env:
       PACKAGE_TYPE: libtorch
